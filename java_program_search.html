@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Java Lab Programs</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;padding:20px}
+.container{max-width:1000px;margin:auto}
+h1{text-align:center;color:#222}
+.search{display:flex;gap:10px;margin:25px 0}
+input{flex:1;padding:14px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+button{padding:14px 20px;border:0;border-radius:8px;background:#2563eb;color:white;cursor:pointer}
+.card{background:white;border-radius:12px;padding:20px;box-shadow:0 3px 12px #0001}
+pre{background:#1e1e1e;color:#eee;padding:20px;border-radius:8px;overflow:auto;white-space:pre-wrap}
+.copy{margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Java Lab Programs</h1>
+<div class="search">
+<input id="search" placeholder="Enter program title..." oninput="searchProgram()">
+<button onclick="searchProgram()">Search</button>
+</div>
+<div id="result"></div>
+</div>
+
+<script>
+const program = {
+title: "Selenium Test Controls",
+code: `package labprogram1;
+
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.JavascriptExecutor;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class testcontrols {
+    public static void main(String[] args) throws Exception {
+
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+        driver.get("https://demoqa.com/automation-practice-form");
+
+        driver.findElement(By.id("firstName")).sendKeys("Vinitha");
+        driver.findElement(By.id("lastName")).sendKeys("A");
+        driver.findElement(By.id("userEmail")).sendKeys("vinitha@gmail.com");
+
+        System.out.println("Test Case 1 Passed : Text Boxes");
+
+        WebElement female = driver.findElement(By.xpath("//label[text()='Female']"));
+        female.click();
+
+        System.out.println("Test Case 2 Passed : Radio Button");
+
+        driver.findElement(By.id("userNumber")).sendKeys("9876543210");
+
+        System.out.println("Test Case 3 Passed : Mobile Number");
+
+        driver.findElement(By.xpath("//label[text()='Sports']")).click();
+
+        System.out.println("Test Case 4 Passed : Check Box");
+
+        driver.findElement(By.id("currentAddress")).sendKeys("Coimbatore");
+
+        System.out.println("Test Case 5 Passed : Address");
+
+        Thread.sleep(2000);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement submit = driver.findElement(By.id("submit"));
+
+        js.executeScript("arguments[0].scrollIntoView(true);", submit);
+
+        Thread.sleep(1000);
+
+        js.executeScript("arguments[0].click();", submit);
+
+        System.out.println("Test Case 6 Passed : Submit Button");
+
+        Thread.sleep(3000);
+
+        driver.quit();
+    }
+}`
+};
+
+function searchProgram(){
+    const q=document.getElementById("search").value.toLowerCase().trim();
+    const result=document.getElementById("result");
+    if(!q){
+        result.innerHTML="";
+        return;
+    }
+    if(program.title.toLowerCase().includes(q)){
+        result.innerHTML=`
+        <div class="card">
+            <h2>${program.title}</h2>
+            <pre id="code">${escapeHtml(program.code)}</pre>
+            <button class="copy" onclick="copyCode()">📋 Copy Code</button>
+        </div>`;
+    }else{
+        result.innerHTML='<div class="card"><h3>Program not found</h3><p>Try: Selenium Test Controls</p></div>';
+    }
+}
+function escapeHtml(text){
+    return text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function copyCode(){
+    navigator.clipboard.writeText(program.code);
+    alert("Code copied!");
+}
+</script>
+</body>
+</html>
