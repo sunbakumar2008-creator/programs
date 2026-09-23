@@ -1,35 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Java Lab Programs</title>
+
 <style>
-body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;padding:20px}
-.container{max-width:1000px;margin:auto}
-h1{text-align:center;color:#222}
-.search{display:flex;gap:10px;margin:25px 0}
-input{flex:1;padding:14px;border:1px solid #ccc;border-radius:8px;font-size:16px}
-button{padding:14px 20px;border:0;border-radius:8px;background:#2563eb;color:white;cursor:pointer}
-.card{background:white;border-radius:12px;padding:20px;box-shadow:0 3px 12px #0001}
-pre{background:#1e1e1e;color:#eee;padding:20px;border-radius:8px;overflow:auto;white-space:pre-wrap}
-.copy{margin-top:10px}
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f4f7;
+    margin:0;
+    padding:30px 15px;
+}
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+h1{
+    text-align:center;
+    font-size:42px;
+}
+.search{
+    display:flex;
+    gap:10px;
+    margin:30px 0;
+}
+input{
+    flex:1;
+    padding:18px;
+    font-size:20px;
+    border:2px solid #ccc;
+    border-radius:12px;
+}
+button{
+    padding:18px 25px;
+    background:#2864dc;
+    color:white;
+    border:none;
+    border-radius:12px;
+    font-size:20px;
+}
+.card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 4px 15px #ccc;
+}
+pre{
+    background:#111827;
+    color:#f8fafc;
+    padding:20px;
+    border-radius:12px;
+    overflow:auto;
+    white-space:pre-wrap;
+}
+.copy{
+    background:#198754;
+    margin-top:10px;
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
+
 <h1>Java Lab Programs</h1>
+
 <div class="search">
-<input id="search" placeholder="Enter program title..." oninput="searchProgram()">
+<input id="searchInput" placeholder="Enter Program 1, Program 2...">
 <button onclick="searchProgram()">Search</button>
 </div>
+
 <div id="result"></div>
+
 </div>
 
 <script>
-const program = {
-title: "Selenium Test Controls",
-code: `package labprogram1;
+
+const programs = {
+
+"program 1": {
+title:"Program 1 - Selenium Test Controls",
+code:`package labprogram1;
 
 import java.time.Duration;
 import org.openqa.selenium.By;
@@ -40,84 +93,668 @@ import org.openqa.selenium.JavascriptExecutor;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class testcontrols {
-    public static void main(String[] args) throws Exception {
+public static void main(String[] args) throws Exception {
 
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+WebDriverManager.chromedriver().setup();
 
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+WebDriver driver = new ChromeDriver();
 
-        driver.get("https://demoqa.com/automation-practice-form");
+driver.manage().window().maximize();
 
-        driver.findElement(By.id("firstName")).sendKeys("Vinitha");
-        driver.findElement(By.id("lastName")).sendKeys("A");
-        driver.findElement(By.id("userEmail")).sendKeys("vinitha@gmail.com");
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-        System.out.println("Test Case 1 Passed : Text Boxes");
+driver.get("https://demoqa.com/automation-practice-form");
 
-        WebElement female = driver.findElement(By.xpath("//label[text()='Female']"));
-        female.click();
+driver.findElement(By.id("firstName")).sendKeys("Vinitha");
+driver.findElement(By.id("lastName")).sendKeys("A");
+driver.findElement(By.id("userEmail")).sendKeys("vinitha@gmail.com");
 
-        System.out.println("Test Case 2 Passed : Radio Button");
+System.out.println("Test Case 1 Passed : Text Boxes");
 
-        driver.findElement(By.id("userNumber")).sendKeys("9876543210");
+WebElement female =
+driver.findElement(By.xpath("//label[text()='Female']"));
 
-        System.out.println("Test Case 3 Passed : Mobile Number");
+female.click();
 
-        driver.findElement(By.xpath("//label[text()='Sports']")).click();
+System.out.println("Test Case 2 Passed : Radio Button");
 
-        System.out.println("Test Case 4 Passed : Check Box");
+driver.findElement(By.id("userNumber"))
+.sendKeys("9876543210");
 
-        driver.findElement(By.id("currentAddress")).sendKeys("Coimbatore");
+System.out.println("Test Case 3 Passed : Mobile Number");
 
-        System.out.println("Test Case 5 Passed : Address");
+driver.findElement(By.xpath("//label[text()='Sports']")).click();
 
-        Thread.sleep(2000);
+System.out.println("Test Case 4 Passed : Check Box");
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        WebElement submit = driver.findElement(By.id("submit"));
+driver.findElement(By.id("currentAddress"))
+.sendKeys("Coimbatore");
 
-        js.executeScript("arguments[0].scrollIntoView(true);", submit);
+System.out.println("Test Case 5 Passed : Address");
 
-        Thread.sleep(1000);
+Thread.sleep(2000);
 
-        js.executeScript("arguments[0].click();", submit);
+JavascriptExecutor js =
+(JavascriptExecutor) driver;
 
-        System.out.println("Test Case 6 Passed : Submit Button");
+WebElement submit =
+driver.findElement(By.id("submit"));
 
-        Thread.sleep(3000);
+js.executeScript(
+"arguments[0].scrollIntoView(true);",submit);
 
-        driver.quit();
-    }
+Thread.sleep(1000);
+
+js.executeScript(
+"arguments[0].click();",submit);
+
+System.out.println("Test Case 6 Passed : Submit Button");
+
+Thread.sleep(3000);
+
+driver.quit();
+}
 }`
+},
+
+"program 2": {
+title:"Program 2 - Selenium Text Box with Test Data",
+code:`package seleniumdemo;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class DemoTextBox {
+
+public static void main(String[] args) throws Exception {
+
+BufferedReader br =
+new BufferedReader(new FileReader("testdata.txt"));
+
+String name = br.readLine();
+String email = br.readLine();
+String current = br.readLine();
+String permanent = br.readLine();
+
+br.close();
+
+WebDriverManager.chromedriver().setup();
+
+WebDriver driver = new ChromeDriver();
+
+driver.manage().window().maximize();
+
+driver.manage().timeouts()
+.implicitlyWait(Duration.ofSeconds(10));
+
+driver.get("https://demoqa.com/text-box");
+
+driver.findElement(By.id("userName"))
+.sendKeys(name);
+
+driver.findElement(By.id("userEmail"))
+.sendKeys(email);
+
+driver.findElement(By.id("currentAddress"))
+.sendKeys(current);
+
+driver.findElement(By.id("permanentAddress"))
+.sendKeys(permanent);
+
+JavascriptExecutor js =
+(JavascriptExecutor) driver;
+
+WebElement submitBtn =
+driver.findElement(By.id("submit"));
+
+js.executeScript(
+"arguments[0].scrollIntoView(true);",
+submitBtn);
+
+Thread.sleep(1000);
+
+js.executeScript(
+"arguments[0].click();",
+submitBtn);
+
+String outputName =
+driver.findElement(By.id("name")).getText();
+
+String outputEmail =
+driver.findElement(By.id("email")).getText();
+
+String outputCurrent =
+driver.findElement(
+By.xpath("//p[@id='currentAddress']")
+).getText();
+
+String outputPermanent =
+driver.findElement(
+By.xpath("//p[@id='permanentAddress']")
+).getText();
+
+System.out.println("========= Submitted Details =========");
+
+System.out.println(outputName);
+System.out.println(outputEmail);
+System.out.println(outputCurrent);
+System.out.println(outputPermanent);
+
+if(outputName.contains(name)
+&& outputEmail.contains(email)
+&& outputCurrent.contains(current)
+&& outputPermanent.contains(permanent)) {
+
+System.out.println("\\nTEST CASE PASSED");
+
+}
+else {
+
+System.out.println("\\nTEST CASE FAILED");
+
+}
+
+Thread.sleep(3000);
+
+driver.quit();
+
+}
+}`
+},
+
+"program 3": {
+title:"Program 3 - Percentage Above 60",
+code:`package Mytest;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class percentageabove60 {
+
+public static void main(String[] args) {
+
+Scanner scanner = new Scanner(System.in);
+
+try {
+
+System.out.print("Enter the number of students: ");
+
+int studentCount = scanner.nextInt();
+
+scanner.nextLine();
+
+if (studentCount <= 0) {
+
+System.out.println("\\nTC01 : FAIL");
+System.out.println(
+"Number of students must be greater than zero.");
+
+return;
+}
+
+String[] names = new String[studentCount];
+
+int[] percentages =
+new int[studentCount];
+
+for (int i = 0; i < studentCount; i++) {
+
+System.out.println(
+"\\nStudent Detail " + (i + 1));
+
+System.out.print("Enter Name: ");
+
+names[i] = scanner.nextLine();
+
+System.out.print("Enter Percentage: ");
+
+percentages[i] = scanner.nextInt();
+
+scanner.nextLine();
+}
+
+System.out.println(
+"\\n========== TEST CASE VERIFICATION ==========");
+
+System.out.println(
+"TC01 - Verify Number of Students : PASS");
+
+boolean validName = true;
+
+for (String name : names) {
+
+if (name.trim().isEmpty()) {
+
+validName = false;
+break;
+
+}
+}
+
+if (validName)
+
+System.out.println(
+"TC02 - Verify Student Name : PASS");
+
+else
+
+System.out.println(
+"TC02 - Verify Student Name : FAIL");
+
+boolean validPercentage = true;
+
+for (int per : percentages) {
+
+if (per < 0 || per > 100) {
+
+validPercentage = false;
+break;
+
+}
+}
+
+if (validPercentage)
+
+System.out.println(
+"TC03 - Verify Percentage Range (0-100) : PASS");
+
+else {
+
+System.out.println(
+"TC03 - Verify Percentage Range (0-100) : FAIL");
+
+return;
+}
+
+System.out.println(
+"\\nStudents with Percentage Above 60");
+
+boolean found = false;
+
+for (int i = 0; i < studentCount; i++) {
+
+if (percentages[i] > 60) {
+
+System.out.println(
+names[i] + " - " + percentages[i] + "%");
+
+found = true;
+
+}
+}
+
+if (found)
+
+System.out.println(
+"TC04 - Verify Students Above 60 : PASS");
+
+else
+
+System.out.println(
+"TC04 - Verify Students Above 60 : FAIL (No Student Above 60)");
+
+System.out.println(
+"TC05 - Verify Program Execution : PASS");
+
+}
+catch (InputMismatchException e) {
+
+System.out.println(
+"\\nTC06 - Verify Invalid Input : PASS");
+
+System.out.println(
+"Invalid input! Percentage must be numeric.");
+
+}
+finally {
+
+scanner.close();
+
+}
+}
+}`
+},
+
+"program 4": {
+title:"Program 4 - Maven Login Test",
+code:`package My_Test;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class loginTest_01 {
+
+public static void main(String[] args) {
+
+WebDriverManager.chromedriver().setup();
+
+WebDriver driver = new ChromeDriver();
+
+driver.manage().window().maximize();
+
+driver.manage().timeouts()
+.implicitlyWait(Duration.ofSeconds(10));
+
+driver.get(
+"https://opensource-demo.orangehrmlive.com/");
+
+driver.findElement(By.name("username"))
+.sendKeys("Admin");
+
+driver.findElement(By.name("password"))
+.sendKeys("admin123");
+
+driver.findElement(
+By.xpath("//button[@type='submit']"))
+.click();
+
+String expectedTitle = "OrangeHRM";
+
+String actualTitle = driver.getTitle();
+
+System.out.println("--------------------------------");
+
+if (actualTitle.contains(expectedTitle)) {
+
+System.out.println("TEST CASE PASSED");
+System.out.println("Login Successful");
+
+}
+else {
+
+System.out.println("TEST CASE FAILED");
+System.out.println("Login Failed");
+
+}
+
+System.out.println(
+"Page Title : " + actualTitle);
+
+System.out.println("--------------------------------");
+
+driver.quit();
+
+}
+}`
+},
+
+"program 5": {
+title:"Program 5 - Combo Box / List Box",
+code:`package labprogram006;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class combox {
+
+public static void main(String[] args) {
+
+WebDriverManager.chromedriver().setup();
+
+WebDriver driver = new ChromeDriver();
+
+driver.manage().window().maximize();
+
+driver.manage().timeouts()
+.implicitlyWait(Duration.ofSeconds(10));
+
+driver.get(
+"https://testautomationpractice.blogspot.com/");
+
+List<WebElement> listItems =
+driver.findElements(
+By.xpath("//select[@id='country']/option"));
+
+System.out.println(
+"Total Number of Items: " + listItems.size());
+
+System.out.println("\\nItems in List Box:");
+
+for (WebElement item : listItems) {
+
+System.out.println(item.getText());
+
+}
+
+driver.quit();
+
+}
+}`
+},
+
+"program 6": {
+title:"Program 6 - Login Form Testing",
+code:`<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Login Form</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+}
+
+.login{
+width:300px;
+margin:auto;
+margin-top:100px;
+padding:20px;
+background:white;
+border-radius:8px;
+box-shadow:0px 0px 10px gray;
+}
+
+input{
+width:95%;
+padding:10px;
+margin:8px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:green;
+color:white;
+border:none;
+font-size:16px;
+}
+
+</style>
+
+<script>
+
+function validate(){
+
+var u =
+document.getElementById("username").value;
+
+var p =
+document.getElementById("password").value;
+
+if(u=="admin" && p=="admin123"){
+
+document.getElementById("msg")
+.innerHTML="Login Successful";
+
+}
+else{
+
+document.getElementById("msg")
+.innerHTML="Invalid Username or Password";
+
+}
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="login">
+
+<h2 align="center">Login</h2>
+
+<input type="text"
+id="username"
+placeholder="Username">
+
+<input type="password"
+id="password"
+placeholder="Password">
+
+<button onclick="validate()">Login</button>
+
+<h3 id="msg"></h3>
+
+</div>
+
+</body>
+</html>
+
+
+package labprogram7;
+
+import java.io.File;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class LoginFormTest {
+
+public static void main(String[] args) {
+
+WebDriverManager.chromedriver().setup();
+
+WebDriver driver = new ChromeDriver();
+
+driver.manage().window().maximize();
+
+File file =
+new File("src/main/resources/login.html");
+
+String url =
+"file:///" +
+file.getAbsolutePath().replace("\\","/");
+
+driver.get(url);
+
+driver.findElement(
+By.id("username")).sendKeys("admin");
+
+driver.findElement(
+By.id("password")).sendKeys("admin123");
+
+driver.findElement(
+By.tagName("button")).click();
+
+String result =
+driver.findElement(By.id("msg")).getText();
+
+System.out.println(
+"Login Result : " + result);
+
+if(result.equals("Login Successful")){
+
+System.out.println("TEST CASE PASSED");
+
+}
+else{
+
+System.out.println("TEST CASE FAILED");
+
+}
+
+driver.quit();
+
+}
+}`
+}
+
 };
 
 function searchProgram(){
-    const q=document.getElementById("search").value.toLowerCase().trim();
-    const result=document.getElementById("result");
-    if(!q){
-        result.innerHTML="";
-        return;
-    }
-    if(program.title.toLowerCase().includes(q)){
-        result.innerHTML=`
-        <div class="card">
-            <h2>${program.title}</h2>
-            <pre id="code">${escapeHtml(program.code)}</pre>
-            <button class="copy" onclick="copyCode()">📋 Copy Code</button>
-        </div>`;
-    }else{
-        result.innerHTML='<div class="card"><h3>Program not found</h3><p>Try: Selenium Test Controls</p></div>';
-    }
+
+let query =
+document.getElementById("searchInput")
+.value.trim().toLowerCase();
+
+let result =
+document.getElementById("result");
+
+if(programs[query]){
+
+let p = programs[query];
+
+result.innerHTML =
+'<div class="card">' +
+'<h2>' + p.title + '</h2>' +
+'<pre id="code"></pre>' +
+'<button class="copy" onclick="copyCode()">Copy Code</button>' +
+'</div>';
+
+document.getElementById("code")
+.textContent = p.code;
+
 }
-function escapeHtml(text){
-    return text.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+else{
+
+result.innerHTML =
+'<div class="card">' +
+'<h2>Program not found</h2>' +
+'<p>Enter Program 1, Program 2, Program 3, Program 4, Program 5 or Program 6.</p>' +
+'</div>';
+
 }
+
+}
+
 function copyCode(){
-    navigator.clipboard.writeText(program.code);
-    alert("Code copied!");
+
+let query =
+document.getElementById("searchInput")
+.value.trim().toLowerCase();
+
+navigator.clipboard.writeText(
+programs[query].code
+);
+
+alert("Code copied!");
+
 }
+
 </script>
+
 </body>
-</html>
+    </html>
